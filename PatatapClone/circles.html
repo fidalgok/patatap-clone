@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Patatap Clone</title>
+	<link rel="stylesheet" type="text/css" href="assets/css/main.css">
+	<!-- Load the Paper.js library -->
+<script type="text/javascript" src="assets/js/lib/paper-full.min.js"></script>
+<!-- Define inlined PaperScript associate it with myCanvas -->
+<script type="text/paperscript" canvas="myCanvas">
+	
+
+// Create a circle shaped path with a fill of red and a radius of 30:
+var path = new Path.Circle({
+	fillColor: '#FF0000',
+	radius: 10,
+	strokeColor: 'black'
+});
+
+//create a symbol definition to create multiple circles
+var definition = new SymbolDefinition(path);
+
+var circle = new SymbolItem(definition);
+createGrid();
+
+function onResize(event) {
+	// Whenever the window is resized, recenter the path:
+	//circle.position = view.center;
+}
+
+function createGrid(){
+
+	for(var x = 0; x <= 1000; x+= 100){
+
+		//y coordinates
+		for(var y = 0; y <= window.innerHeight; y += 100){
+			circle = new SymbolItem(definition);
+			circle.position = new Point(x,y);
+		}
+	}
+}
+</script>
+	<!-- <script type="text/javascript" src="assets/js/main.js"></script> -->
+</head>
+<body>
+<canvas id="myCanvas" resize></canvas>
+</body>
+</html>
